@@ -25,7 +25,6 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = ['id', 'image', 'thumbnail_200', 'thumbnail_400', 'original_image', 'expiring_link']
         read_only_fields = ['thumbnail_200', 'thumbnail_400', 'original_image', 'expiring_link']
-        fields = '__all__'
 
     def create(self, validated_data):
         image = Image.objects.create(image=validated_data['image'])
