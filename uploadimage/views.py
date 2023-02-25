@@ -5,7 +5,6 @@ from rest_framework import status
 from .models import Image
 from django.contrib.auth.models import User
 from Project.serializers import ImageSerializer
-from rest_framework.parsers import MultiPartParser, FormParser
 
 class ImageList(APIView):
     def get(self, request):
@@ -14,8 +13,6 @@ class ImageList(APIView):
         return Response(serializer.data)
 
 class ImageUpload(APIView):
-    parser_classes = (MultiPartParser, FormParser)
-
     def post(self, request):
         # Get the user's plan and check permissions
         user_plan = User.groups
