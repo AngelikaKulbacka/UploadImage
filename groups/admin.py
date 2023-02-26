@@ -18,3 +18,10 @@ class GroupAdminForm(forms.ModelForm):
 class CustomGroupAdmin(GroupAdmin):
     form = GroupAdminForm
 
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        user_tier = form.cleaned_data.get('user_tier')
+
+        if user_tier:
+            obj.user_tier = user_tier
+            obj.save()
